@@ -1,15 +1,367 @@
 {
-  "address": "0xc194EA4D952dA2B32256558affef763c553b49CF",
+  "address": "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
   "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
     {
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_newNumber",
+          "name": "_date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_slotTime",
           "type": "uint256"
         }
       ],
-      "name": "changeNumber",
+      "name": "addSlot",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_image",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_qualification",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_achievements",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_payPerSlot",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTherapist",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_slotIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "bookSlot",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllSlots",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "slotTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "createdBy",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "bookedBy",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isAvailable",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isCompleted",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct therapy.Slot[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllSlotsByBookedBy",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "slotTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "createdBy",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "bookedBy",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isAvailable",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isCompleted",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct therapy.Slot[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_createdBy",
+          "type": "address"
+        }
+      ],
+      "name": "getAllSlotsByCreatedBy",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "slotTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "createdBy",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "bookedBy",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isAvailable",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isCompleted",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct therapy.Slot[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllTherapists",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "walletAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "qualification",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "achievements",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "payPerSlot",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct therapy.Therapist[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "slots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "slotTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "createdBy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "bookedBy",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "isAvailable",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isCompleted",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "therapistToSlots",
       "outputs": [
         {
           "internalType": "uint256",
@@ -17,12 +369,72 @@
           "type": "uint256"
         }
       ],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "getNumber",
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "therapists",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "qualification",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "achievements",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "payPerSlot",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userToBookedSlots",
       "outputs": [
         {
           "internalType": "uint256",

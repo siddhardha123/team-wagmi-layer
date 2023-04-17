@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-
+import Layout from '@/components/Layout';
 import { WagmiConfig, createClient } from 'wagmi';
 import { mainnet, polygonMumbai, optimism, arbitrum } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultClient } from 'connectkit';
@@ -18,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={client}>
       <ConnectKitProvider debugMode>
+      <Layout>
         <Component {...pageProps} />
+      </Layout>
       </ConnectKitProvider>
     </WagmiConfig>
   );
