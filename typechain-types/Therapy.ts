@@ -27,30 +27,33 @@ import type {
 export declare namespace Therapy {
   export type SlotStruct = {
     index: PromiseOrValue<BigNumberish>;
-    date: PromiseOrValue<BigNumberish>;
-    slotTime: PromiseOrValue<BigNumberish>;
+    date: PromiseOrValue<string>;
+    slotTime: PromiseOrValue<string>;
     createdBy: PromiseOrValue<string>;
     bookedBy: PromiseOrValue<string>;
     isAvailable: PromiseOrValue<boolean>;
     isCompleted: PromiseOrValue<boolean>;
+    link: PromiseOrValue<string>;
   };
 
   export type SlotStructOutput = [
     BigNumber,
-    BigNumber,
-    BigNumber,
+    string,
+    string,
     string,
     string,
     boolean,
-    boolean
+    boolean,
+    string
   ] & {
     index: BigNumber;
-    date: BigNumber;
-    slotTime: BigNumber;
+    date: string;
+    slotTime: string;
     createdBy: string;
     bookedBy: string;
     isAvailable: boolean;
     isCompleted: boolean;
+    link: string;
   };
 
   export type TherapistStruct = {
@@ -58,8 +61,8 @@ export declare namespace Therapy {
     image: PromiseOrValue<string>;
     walletAddress: PromiseOrValue<string>;
     qualification: PromiseOrValue<string>;
-    description: PromiseOrValue<string>;
-    achievements: PromiseOrValue<string>;
+    about: PromiseOrValue<string>;
+    specialization: PromiseOrValue<string>;
     payPerSlot: PromiseOrValue<BigNumberish>;
   };
 
@@ -76,18 +79,18 @@ export declare namespace Therapy {
     image: string;
     walletAddress: string;
     qualification: string;
-    description: string;
-    achievements: string;
+    about: string;
+    specialization: string;
     payPerSlot: BigNumber;
   };
 }
 
 export interface TherapyInterface extends utils.Interface {
   functions: {
-    "addSlot(uint256,uint256)": FunctionFragment;
+    "addSlot(string,string)": FunctionFragment;
     "addTherapist(string,string,address,string,string,string,uint256)": FunctionFragment;
     "admin()": FunctionFragment;
-    "bookSlot(uint256)": FunctionFragment;
+    "bookSlot(uint256,string)": FunctionFragment;
     "getAllSlots()": FunctionFragment;
     "getAllSlotsByBookedBy()": FunctionFragment;
     "getAllSlotsByCreatedBy(address)": FunctionFragment;
@@ -116,7 +119,7 @@ export interface TherapyInterface extends utils.Interface {
 
   encodeFunctionData(
     functionFragment: "addSlot",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "addTherapist",
@@ -133,7 +136,7 @@ export interface TherapyInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "admin", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "bookSlot",
-    values: [PromiseOrValue<BigNumberish>]
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "getAllSlots",
@@ -233,8 +236,8 @@ export interface Therapy extends BaseContract {
 
   functions: {
     addSlot(
-      _date: PromiseOrValue<BigNumberish>,
-      _slotTime: PromiseOrValue<BigNumberish>,
+      _date: PromiseOrValue<string>,
+      _slotTime: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -243,8 +246,8 @@ export interface Therapy extends BaseContract {
       _image: PromiseOrValue<string>,
       _walletAddress: PromiseOrValue<string>,
       _qualification: PromiseOrValue<string>,
-      _description: PromiseOrValue<string>,
-      _achievements: PromiseOrValue<string>,
+      _about: PromiseOrValue<string>,
+      _specialization: PromiseOrValue<string>,
       _payPerSlot: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -253,6 +256,7 @@ export interface Therapy extends BaseContract {
 
     bookSlot(
       _slotIndex: PromiseOrValue<BigNumberish>,
+      _link: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -277,14 +281,15 @@ export interface Therapy extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [BigNumber, BigNumber, BigNumber, string, string, boolean, boolean] & {
+      [BigNumber, string, string, string, string, boolean, boolean, string] & {
         index: BigNumber;
-        date: BigNumber;
-        slotTime: BigNumber;
+        date: string;
+        slotTime: string;
         createdBy: string;
         bookedBy: string;
         isAvailable: boolean;
         isCompleted: boolean;
+        link: string;
       }
     >;
 
@@ -303,8 +308,8 @@ export interface Therapy extends BaseContract {
         image: string;
         walletAddress: string;
         qualification: string;
-        description: string;
-        achievements: string;
+        about: string;
+        specialization: string;
         payPerSlot: BigNumber;
       }
     >;
@@ -317,8 +322,8 @@ export interface Therapy extends BaseContract {
   };
 
   addSlot(
-    _date: PromiseOrValue<BigNumberish>,
-    _slotTime: PromiseOrValue<BigNumberish>,
+    _date: PromiseOrValue<string>,
+    _slotTime: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -327,8 +332,8 @@ export interface Therapy extends BaseContract {
     _image: PromiseOrValue<string>,
     _walletAddress: PromiseOrValue<string>,
     _qualification: PromiseOrValue<string>,
-    _description: PromiseOrValue<string>,
-    _achievements: PromiseOrValue<string>,
+    _about: PromiseOrValue<string>,
+    _specialization: PromiseOrValue<string>,
     _payPerSlot: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -337,6 +342,7 @@ export interface Therapy extends BaseContract {
 
   bookSlot(
     _slotIndex: PromiseOrValue<BigNumberish>,
+    _link: PromiseOrValue<string>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -359,14 +365,15 @@ export interface Therapy extends BaseContract {
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [BigNumber, BigNumber, BigNumber, string, string, boolean, boolean] & {
+    [BigNumber, string, string, string, string, boolean, boolean, string] & {
       index: BigNumber;
-      date: BigNumber;
-      slotTime: BigNumber;
+      date: string;
+      slotTime: string;
       createdBy: string;
       bookedBy: string;
       isAvailable: boolean;
       isCompleted: boolean;
+      link: string;
     }
   >;
 
@@ -385,8 +392,8 @@ export interface Therapy extends BaseContract {
       image: string;
       walletAddress: string;
       qualification: string;
-      description: string;
-      achievements: string;
+      about: string;
+      specialization: string;
       payPerSlot: BigNumber;
     }
   >;
@@ -399,8 +406,8 @@ export interface Therapy extends BaseContract {
 
   callStatic: {
     addSlot(
-      _date: PromiseOrValue<BigNumberish>,
-      _slotTime: PromiseOrValue<BigNumberish>,
+      _date: PromiseOrValue<string>,
+      _slotTime: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -409,8 +416,8 @@ export interface Therapy extends BaseContract {
       _image: PromiseOrValue<string>,
       _walletAddress: PromiseOrValue<string>,
       _qualification: PromiseOrValue<string>,
-      _description: PromiseOrValue<string>,
-      _achievements: PromiseOrValue<string>,
+      _about: PromiseOrValue<string>,
+      _specialization: PromiseOrValue<string>,
       _payPerSlot: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -419,6 +426,7 @@ export interface Therapy extends BaseContract {
 
     bookSlot(
       _slotIndex: PromiseOrValue<BigNumberish>,
+      _link: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -441,14 +449,15 @@ export interface Therapy extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [BigNumber, BigNumber, BigNumber, string, string, boolean, boolean] & {
+      [BigNumber, string, string, string, string, boolean, boolean, string] & {
         index: BigNumber;
-        date: BigNumber;
-        slotTime: BigNumber;
+        date: string;
+        slotTime: string;
         createdBy: string;
         bookedBy: string;
         isAvailable: boolean;
         isCompleted: boolean;
+        link: string;
       }
     >;
 
@@ -467,8 +476,8 @@ export interface Therapy extends BaseContract {
         image: string;
         walletAddress: string;
         qualification: string;
-        description: string;
-        achievements: string;
+        about: string;
+        specialization: string;
         payPerSlot: BigNumber;
       }
     >;
@@ -484,8 +493,8 @@ export interface Therapy extends BaseContract {
 
   estimateGas: {
     addSlot(
-      _date: PromiseOrValue<BigNumberish>,
-      _slotTime: PromiseOrValue<BigNumberish>,
+      _date: PromiseOrValue<string>,
+      _slotTime: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -494,8 +503,8 @@ export interface Therapy extends BaseContract {
       _image: PromiseOrValue<string>,
       _walletAddress: PromiseOrValue<string>,
       _qualification: PromiseOrValue<string>,
-      _description: PromiseOrValue<string>,
-      _achievements: PromiseOrValue<string>,
+      _about: PromiseOrValue<string>,
+      _specialization: PromiseOrValue<string>,
       _payPerSlot: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -504,6 +513,7 @@ export interface Therapy extends BaseContract {
 
     bookSlot(
       _slotIndex: PromiseOrValue<BigNumberish>,
+      _link: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -543,8 +553,8 @@ export interface Therapy extends BaseContract {
 
   populateTransaction: {
     addSlot(
-      _date: PromiseOrValue<BigNumberish>,
-      _slotTime: PromiseOrValue<BigNumberish>,
+      _date: PromiseOrValue<string>,
+      _slotTime: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -553,8 +563,8 @@ export interface Therapy extends BaseContract {
       _image: PromiseOrValue<string>,
       _walletAddress: PromiseOrValue<string>,
       _qualification: PromiseOrValue<string>,
-      _description: PromiseOrValue<string>,
-      _achievements: PromiseOrValue<string>,
+      _about: PromiseOrValue<string>,
+      _specialization: PromiseOrValue<string>,
       _payPerSlot: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
@@ -563,6 +573,7 @@ export interface Therapy extends BaseContract {
 
     bookSlot(
       _slotIndex: PromiseOrValue<BigNumberish>,
+      _link: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
