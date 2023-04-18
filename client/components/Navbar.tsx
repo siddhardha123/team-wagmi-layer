@@ -1,24 +1,33 @@
 import { useState } from 'react'
 import { ConnectKitButton } from 'connectkit';
-
- const Navbar = () => {
+import logo from '../assets/logo_theraDapp.png'
+import Image from 'next/image'
+import Link from 'next/link';
+ const Navbar = (props) => {
 
   const [state, setState] = useState(false)
 
-  // Replace javascript:void(0) path with your path
+
   const navigation = [
-      { title: "My sessions", path: "/Sessions" },
+      { title: "My sessions", path: "/Mysessions" },
       {title:"Our counsellors" , path:"/Ourcounsellors"},
       {title : "Add Therapist", path: "/Addtherapist"},
-      { title: "Profile", path: "/Profile" },
+      { title: "Add Slots", path: "/AddSlots" },
   ]
 
   return (
       <nav className="bg-white w-full border-b md:border-0 md:static">
           <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-              <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                   
-                      <img src="" alt="sid" />
+              <div className="flex items-center justify-between  md:py-5 md:block">  
+            <Link href="/">           
+              <Image
+      src={logo}
+      alt="logo"
+      className='w-24'
+     
+    />
+    </Link> 
+            
                     
                   <div className="md:hidden">
                   <ConnectKitButton />

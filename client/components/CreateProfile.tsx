@@ -14,21 +14,21 @@ const CreateProfile = () => {
     const [image,setImage] = useState('');
     const [walletAddress, setWalletAddress] = useState('');
     const [qualification, setQualification] = useState('');
-    const [description, setDescription] = useState('');
-    const [achievements, setAchievements] = useState('');
+    const [about, setAbout] = useState('');
+    const [specialization, setSpecialization] = useState('');
     const [payPerSlot, setPayPerSlot] = useState('');
     const [loading, setLoading] = useState(false)
     const [wei,setWei] = useState(BigNumber.from(0))
     
     const { config } = usePrepareContractWrite({
-        address: "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
+        address: `${contractConfig.address}`,
         abi: contractConfig.abi,
         functionName: "addTherapist",
-        args: [name,image,walletAddress,qualification,description,achievements,wei],
+        args: [name,image,walletAddress,qualification,about,specialization,wei],
       });
 
     const { data: readData } = useContractRead({
-    address: "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
+    address: `${contractConfig.address}`,
     abi: contractConfig.abi,
     functionName: "getAllTherapists",
   });
@@ -38,11 +38,13 @@ const CreateProfile = () => {
   });
     const handleSubmit = async (e:any) => {
         e.preventDefault();
-        if(name && image && walletAddress && qualification && description && achievements && payPerSlot){
+        if(name && image && walletAddress && qualification && about && specialization && payPerSlot){
              setWei(ethers.utils.parseEther(payPerSlot.toString()))
-             console.log(wei)
+             console.log(BigNumber.from(wei).toNumber())
              setLoading(true)
+             console.log(write)
              write?.()
+             console.log("heyy")
              setLoading(false);
              console.log(writeData)
         }else{
@@ -55,13 +57,14 @@ const CreateProfile = () => {
     };
     useEffect(() => {
         console.log("-----------------------");
-        console.log("useWrite:", readData);
+        console.log("useRead:", readData);
         console.log("useWrite:", writeData);
         console.log("wait for transaction:", waitForTransactionData);
         console.log("-----------------------");
         
     
       }, [waitForTransactionData,readData]);
+    
 
 
     return (
@@ -120,8 +123,8 @@ const CreateProfile = () => {
                             <label className="font-medium">Description</label>
                             <textarea
                                 required
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                value={about}
+                                onChange={(e) => setAbout(e.target.value)}
                                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             ></textarea>
                         </div>
@@ -129,8 +132,8 @@ const CreateProfile = () => {
                             <label className="font-medium">Achievements</label>
                             <textarea
                                 required
-                                value={achievements}
-                                onChange={(e) => setAchievements(e.target.value)}
+                                value={specialization}
+                                onChange={(e) => setSpecialization(e.target.value)}
                                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             ></textarea>
                         </div>

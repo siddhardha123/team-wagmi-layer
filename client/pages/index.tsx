@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { ethers } from 'ethers';
 import type { NextPage } from "next";
 import { ConnectKitButton } from "connectkit";
+import createRoom from "./api/fetchRoom";
+import Flow from "@/components/Flow";
 import contractConfig from "../contractConfig.json";
+import Landing from "@/components/Landing";
+import Footer from "@/components/Footer";
+import Features from "@/components/Features";
 import {
   UseContractConfig,
   useContractRead,
@@ -39,6 +44,9 @@ const Home: NextPage = () => {
   // });
 
   useEffect(() => {
+    // createRoom("0x89BA961732394F806E8fb2bBf138A6ECF057B2d9").then((data)=>{
+    //    console.log(data)
+    // })
     // console.log("-----------------------");
     // console.log("useRead:", readData);
     // console.log("useWrite:", writeData);
@@ -53,26 +61,17 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className=" mx-[30%] my-48 bg-gray-50">
-      {/* <div className="">
-        <ConnectKitButton />
-      </div>
-      <div>
-        <p>enter a number to change:- </p>
-        <input
-          onChange={(e) => setNumber(parseInt(e.target.value))}
-          type="number"
-        />
-        <button
-          disabled={!write}
-          onClick={() => write?.()}
-          className="px-3 py-1 bg-blue-200"
-        >
-          change number
-        </button>
-       
-      </div> */}
-    </div>
+    <>
+        <Landing/>
+        <br/>
+      <h3 className="text-center text-gray-800 text-3xl font-semibold sm:text-4xl">
+                        How it works
+                    </h3>
+                    <br/>
+        <Flow/>
+        <Features/>
+        <Footer/>
+    </>
   );
 };
 

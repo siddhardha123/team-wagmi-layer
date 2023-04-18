@@ -43,7 +43,7 @@ const Ourcounsellors = () => {
   // ]
 
   const { data: readData } = useContractRead({
-    address: "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
+    address: `${contractConfig.address}`,
     abi: contractConfig.abi,
     functionName: "getAllTherapists",
   });
@@ -83,7 +83,7 @@ const Ourcounsellors = () => {
                         </p>
                         <p className="text-gray-500 mt-2 pr-2">
                           Specialization: <br />
-                          {item.achievements}
+                          {item.specialization}
                         </p>
                       </div>
                       <div className="mt-5 space-y-4 text-sm sm:mt-0 sm:space-y-2">
@@ -101,8 +101,8 @@ const Ourcounsellors = () => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          {/* {ethers.utils.formatEther(item.payPerSlot.toString())} */}
-                          per slot
+                          {ethers.utils.formatEther(item.payPerSlot.toString())}
+                            per slot
                         </span>
                       </div>
                     </div>
@@ -113,7 +113,7 @@ const Ourcounsellors = () => {
                       <Link
                         href={{
                           pathname: "/TherapistProfile",
-                          query: { id: `${item.name}` },
+                          query: { id: `${item.name}`,add : `${item.walletAddress}` },
                         }}
                       >
                         <button className="mx-2 px-4 py-2 text-white bg-indigo-600 rounded-lg duration-150 hover:bg-indigo-700 active:shadow-lg">

@@ -1,68 +1,97 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React,{useEffect,useState} from "react";
+import SessionCard from "./SessionCard";
+import { useRouter } from 'next/router';
+import {BigNumber} from 'ethers'
+import contractConfig from "../contractConfig.json";
+import {ethers} from 'ethers'
+import createRoom from "@/pages/api/fetchRoom";
+import {
+    useContractRead,
+    usePrepareContractWrite,
+    useContractWrite,
+    useWaitForTransaction,
+    useAccount,
 
-const availableSlots = {
-  "2023-04-15": ["10:00 AM", "11:00 AM", "2:00 PM"],
-  "2023-04-16": ["1:00 PM", "3:00 PM"],
-  "2023-04-17": ["9:00 AM", "10:00 AM", "11:00 AM"],
-};
+  } from "wagmi";  
+const sessions = [
+  { date: "Monday, April 24", time: "10:00 AM - 11:00 AM" },
+  { date: "Tuesday, April 25", time: "1:00 PM - 2:00 PM" },
+  { date: "Wednesday, April 26", time: "3:00 PM - 4:00 PM" },
+];
 
-const AppointmentScheduler = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [slots, setSlots] = useState([]);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    setSlots(availableSlots[date.toISOString().substr(0, 10)] || []);
+const Sessions = () => {
+    const {address}  = useAccount()
+   const router = useRouter()
+   const { id,add } = router.query;
+
+   const [avSlots,setAvSlots] = useState()
+   const [idx,setIdx] = useState(BigNumber.from(0));
+   const [roomId,setRoomId] = useState('');
+  const handleCardClick = (val) => {
+     setIdx(val)
+     createRoom(address).then((data)=>{
+      console.log(data.data.roomId)
+      setRoomId(data.data.roomId)
+     })
+     console.log(idx)
+     write?.()
   };
+  const { data: readData } = useContractRead({
+    address: `${contractConfig.address}`,
+    abi: contractConfig.abi,
+    functionName: "getAllSlotsByCreatedBy",
+    args: [add],
+  });
 
-  const isSpecialDate = (date) => {
-    const specialDate = new Date("2023-04-16"); // Set the date you want to style
-    return date.toDateString() === specialDate.toDateString();
-  };
+//   const { config } = usePrepareContractWrite({
+//     address: "0x5518B60cE7b3eB589bF10CA2e7D4c1cF2845e1fd",
+//     abi: contractConfig.abi,
+//     functionName: "bookSlot",
+//     args: [idx],
+//   });
+  const { data: writeData, write } = useContractWrite({
+    mode: 'recklesslyUnprepared',
+    address: "0xEAF8DbFf304Ee7D3991094c7C2925ce475abb1FE",
+    abi: contractConfig.abi,
+    functionName: "bookSlot",
+    args: [idx,roomId],
+    overrides: {
+        from: address,
+        value: ethers.utils.parseEther('0.0'),
+      }
+      
+      });
+  const { data: waitForTransactionData ,isSuccess} = useWaitForTransaction({
+  hash: writeData?.hash,
+});
 
-  const specialDateClassName = (date) => {
-    if (isSpecialDate(date)) {
-      return "special-date";
-    }
-    return null;
-  };
+  useEffect(() => {
+    console.log("-----------------------");
+    console.log("useRead:", readData);
+    console.log("useWrite:", writeData);
+    console.log("-----------------------");
+    // setProfile(matchingProfiles)
+    
+    const AvailableSlots = readData.filter(data => data.isAvailable === true);
+    setAvSlots(AvailableSlots)
+
+  }, [readData,waitForTransactionData,writeData]);
+
 
   return (
-    <div className="flex ml-28 ">
-   
-    <div className="mt-5">
-    {/* <h2 className="text-3xl font-bold mb-4">Pick your slot:</h2> */}
-      <DatePicker
-        className="px-4 py-2 rounded-md shadow-md text-gray-800 font-medium mb-8"
-        selected={selectedDate}
-        onChange={handleDateChange}
-        inline
-        dayClassName={specialDateClassName} // apply custom class to special date
-      />
-    </div>
-      
-      {slots.length > 0 && (
-        <div className=" p-4 rounded-md ml-10 ">
-          <h2 className="text-xl font-bold mb-2 ">Available Slots:</h2>
-          <ul className="flex space-x-4">
-            {slots.map((slot) => (
-              <li className="text-gray-800 font-medium rounded-lg bg-blue-100 p-2" key={slot}>
-                {slot}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <style>
-        {`.special-date {
-          background-color: #FFB6C1; // set the background color for the special date
-        }`}
-      </style>
+    <div className="space-y-2 mt-5">
+        
+      {avSlots && avSlots.map((data) => (
+        <SessionCard
+          id={data.index}
+          date={data.date}
+          time={data.slotTime}
+          onClick={handleCardClick}
+        />
+      ))}
     </div>
   );
 };
 
-export default AppointmentScheduler;
+export default Sessions;

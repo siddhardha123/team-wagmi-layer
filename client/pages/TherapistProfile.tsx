@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react'
 import contractConfig from "../contractConfig.json";
+import { ethers } from 'ethers';
 import {
     useContractRead,
   } from "wagmi";
@@ -9,9 +10,10 @@ import SlotBooking from '../components/SlotBooking'
 const  TherapistProfile = () => {
   const router = useRouter();
   const [profile,setProfile] = useState([]);
+  const [address,setAddress] = useState('');
   const { id } = router.query;
   const { data: readData } = useContractRead({
-    address: "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
+    address: `${contractConfig.address}`,
     abi: contractConfig.abi,
     functionName: "getAllTherapists",
   });
@@ -27,8 +29,8 @@ const  TherapistProfile = () => {
   return (
         
        <>
-            <div className='px-10 my-auto'>{profile.map((item,idx)=>(
-                  <div key={idx} className="p-5 bg-gray-200 rounded-md shadow-sm mt-5">
+            <div className='px-10 my-auto '>{profile.map((item,idx)=>(
+                  <div key={idx} className="p-5 bg-white shadow-lg rounded-lg  mt-5">
                   <a href={item.name}>
                     <div className="flex ">
                       <div className="px-10">
@@ -45,11 +47,11 @@ const  TherapistProfile = () => {
                             </p>
                             <p className="text-gray-500 mt-5 pr-2">
                               Specialization: <br />
-                              {item.achievements}
+                              {item.specialization}
                             </p>
                             <p className="text-gray-500 mt-2 pr-2">
                               About: <br />
-                              {item.description}
+                              {item.about}
                             </p>
                           </div>
                           <div className="mt-5 space-y-4 text-sm sm:mt-0 sm:space-y-2">
@@ -67,13 +69,12 @@ const  TherapistProfile = () => {
                                   clipRule="evenodd"
                                 />
                               </svg>
-                              {/* {ethers.utils.formatEther(item.payPerSlot.toString())} */}
+                              {ethers.utils.formatEther(item.payPerSlot.toString())}
                               per slot
                             </span>
                           </div>
                         </div>
                         <div className="mt-4 items-center space-y-4 text-sm sm:flex sm:space-x-4 sm:space-y-0">
-                          
                         </div>
                       </div>
                     </div>
@@ -82,7 +83,10 @@ const  TherapistProfile = () => {
             ))}</div>
             
             <div>
-              <SlotBooking/>
+                {
+                   profile && <SlotBooking />
+                }
+              
             </div>
             
        </>

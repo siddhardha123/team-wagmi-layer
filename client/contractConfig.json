@@ -1,5 +1,5 @@
 {
-  "address": "0xD0E89B010067ad237A57299ea344BF9d70aC4dc9",
+  "address": "0xEAF8DbFf304Ee7D3991094c7C2925ce475abb1FE",
   "abi": [
     {
       "inputs": [],
@@ -9,14 +9,14 @@
     {
       "inputs": [
         {
-          "internalType": "uint256",
+          "internalType": "string",
           "name": "_date",
-          "type": "uint256"
+          "type": "string"
         },
         {
-          "internalType": "uint256",
+          "internalType": "string",
           "name": "_slotTime",
-          "type": "uint256"
+          "type": "string"
         }
       ],
       "name": "addSlot",
@@ -48,12 +48,12 @@
         },
         {
           "internalType": "string",
-          "name": "_description",
+          "name": "_about",
           "type": "string"
         },
         {
           "internalType": "string",
-          "name": "_achievements",
+          "name": "_specialization",
           "type": "string"
         },
         {
@@ -86,6 +86,11 @@
           "internalType": "uint256",
           "name": "_slotIndex",
           "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_link",
+          "type": "string"
         }
       ],
       "name": "bookSlot",
@@ -105,14 +110,14 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "date",
-              "type": "uint256"
+              "type": "string"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "slotTime",
-              "type": "uint256"
+              "type": "string"
             },
             {
               "internalType": "address",
@@ -133,6 +138,11 @@
               "internalType": "bool",
               "name": "isCompleted",
               "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "link",
+              "type": "string"
             }
           ],
           "internalType": "struct therapy.Slot[]",
@@ -155,14 +165,14 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "date",
-              "type": "uint256"
+              "type": "string"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "slotTime",
-              "type": "uint256"
+              "type": "string"
             },
             {
               "internalType": "address",
@@ -183,6 +193,11 @@
               "internalType": "bool",
               "name": "isCompleted",
               "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "link",
+              "type": "string"
             }
           ],
           "internalType": "struct therapy.Slot[]",
@@ -211,14 +226,14 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "date",
-              "type": "uint256"
+              "type": "string"
             },
             {
-              "internalType": "uint256",
+              "internalType": "string",
               "name": "slotTime",
-              "type": "uint256"
+              "type": "string"
             },
             {
               "internalType": "address",
@@ -239,6 +254,11 @@
               "internalType": "bool",
               "name": "isCompleted",
               "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "link",
+              "type": "string"
             }
           ],
           "internalType": "struct therapy.Slot[]",
@@ -277,12 +297,12 @@
             },
             {
               "internalType": "string",
-              "name": "description",
+              "name": "about",
               "type": "string"
             },
             {
               "internalType": "string",
-              "name": "achievements",
+              "name": "specialization",
               "type": "string"
             },
             {
@@ -315,14 +335,14 @@
           "type": "uint256"
         },
         {
-          "internalType": "uint256",
+          "internalType": "string",
           "name": "date",
-          "type": "uint256"
+          "type": "string"
         },
         {
-          "internalType": "uint256",
+          "internalType": "string",
           "name": "slotTime",
-          "type": "uint256"
+          "type": "string"
         },
         {
           "internalType": "address",
@@ -343,6 +363,11 @@
           "internalType": "bool",
           "name": "isCompleted",
           "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "link",
+          "type": "string"
         }
       ],
       "stateMutability": "view",
@@ -404,12 +429,12 @@
         },
         {
           "internalType": "string",
-          "name": "description",
+          "name": "about",
           "type": "string"
         },
         {
           "internalType": "string",
-          "name": "achievements",
+          "name": "specialization",
           "type": "string"
         },
         {
