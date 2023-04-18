@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from 'next/image'
 import logo from '../assets/landingbg.png'
-export default () => {
+const Landing =  () => {
 
 
 
@@ -74,3 +74,5 @@ Anytime, Anywhere, Any device.
         </div>
     )
 }
+
+export default Landing

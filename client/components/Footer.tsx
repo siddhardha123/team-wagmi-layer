@@ -1,4 +1,5 @@
-export default () => {
+ const Footer = () => {
+
     const footerNavs = [
       {
         label: "",
@@ -171,3 +172,5 @@ export default () => {
       </footer>
     );
   };
+
+  export default Footer;

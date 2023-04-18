@@ -4,8 +4,8 @@ import 'tailwindcss/tailwind.css';
 
 const BookingList = ({ bookings } : any) => {
 
-    const upcomingSessions = bookings.filter((booking) => !booking.isCompleted);
-    const previousSessions = bookings.filter((booking) => booking.isCompleted);
+    const upcomingSessions = bookings.filter((booking : any) => !booking.isCompleted);
+    const previousSessions = bookings.filter((booking : any) => booking.isCompleted);
  
   return (
     <div className="flex flex-col mx-64 justify-center">
@@ -14,8 +14,8 @@ const BookingList = ({ bookings } : any) => {
         <p>No upcoming sessions.</p>
       ) : (
         <div className="border rounded-md  divide-gray-200 ">
-          {upcomingSessions && upcomingSessions.map((booking) => (
-            <div  className="flex justify-between ml-5">
+          {upcomingSessions && upcomingSessions.map((booking: any,id : any) => (
+            <div  className="flex justify-between ml-5" key={id}>
 
               <div>
               <p>{booking.date}</p>
@@ -41,7 +41,7 @@ const BookingList = ({ bookings } : any) => {
         <p>No previous sessions.</p>
       ) : (
         <ul className="border rounded-md divide-y divide-gray-200">
-          {previousSessions && previousSessions.map((booking) => (
+          {previousSessions && previousSessions.map((booking : any) => (
             <li key={booking.id} className="p-4 hover:bg-gray-50">
               <p className="font-bold">{booking.name}</p>
               <p>{booking.date}</p>

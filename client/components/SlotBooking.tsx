@@ -52,7 +52,7 @@ const Sessions = () => {
 //   });
   const { data: writeData, write } = useContractWrite({
     mode: 'recklesslyUnprepared',
-    address: "0xEAF8DbFf304Ee7D3991094c7C2925ce475abb1FE",
+    address: "0x543D7F40B60631bC01Ec2d3b4EdF7A51eb422b0d",
     abi: contractConfig.abi,
     functionName: "bookSlot",
     args: [idx,roomId],
@@ -82,8 +82,9 @@ const Sessions = () => {
   return (
     <div className="space-y-2 mt-5">
         
-      {avSlots && avSlots.map((data) => (
+      {avSlots && avSlots.map((data,idx) => (
         <SessionCard
+          key={idx}
           id={data.index}
           date={data.date}
           time={data.slotTime}

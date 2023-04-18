@@ -63,7 +63,7 @@ const BookingForm = () => {
     console.log("-----------------------");
     
 
-  }, [waitForTransactionData]);
+  }, [waitForTransactionData,writeData]);
 
   return (
     <div className="max-w-sm mx-auto">

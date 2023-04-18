@@ -37,7 +37,7 @@ const Mysessions = () => {
         // const matchingProfiles = readData.filter(data => data.name === id);
         // setProfile(matchingProfiles)
     
-      }, [allSlots]);
+      }, [allSlots,therapistSlots]);
   return (
     <div>
     {

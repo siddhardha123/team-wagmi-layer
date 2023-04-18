@@ -1,4 +1,4 @@
-export default () => {
+const Features = () => {
 
     const features = [
         {
@@ -89,3 +89,5 @@ export default () => {
         </section>
     )
 }
+
+export default Features;

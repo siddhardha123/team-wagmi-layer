@@ -8,6 +8,7 @@ const config: HardhatUserConfig = {
   networks: {
       polygon_mumbai: {
           url: "https://polygon-mumbai.g.alchemy.com/v2/2BKX5JkbmGekJaNmVAxYvmlsA5BEVU9K",
+          // url : "https://app.zeeve.io/shared-api/poly/83152b88999add148ac59b150c6682fb22e64fddc18c3b38/",
           accounts: [process.env.PRIVATE_KEY || "privatekey"]
       }
   }
