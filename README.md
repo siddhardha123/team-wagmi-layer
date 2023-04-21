@@ -1,13 +1,1 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
+'theraDapp' facilitates secure and decentralized mental health services by connecting therapists and clients worldwide. It offers a user-friendly interface where therapists can register and display their availability, and clients can book appointments conveniently, irrespective of their location or financial status. We ensure client anonymity with secure video links for each session, and payment is made through cryptocurrency on the blockchain, providing a secure and efficient payment system. Our platform aims to solve the problem of limited access to mental health services while prioritizing client privacy and convenience.
